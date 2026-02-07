@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Create Account - Interactive Close</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+/* মূল স্টাইল এবং অ্যানিমেশন */
+*{box-sizing:border-box;font-family:Inter,system-ui,sans-serif}
+
+body{
+  margin:0; min-height:100vh;
+  background:radial-gradient(circle at top,#ff7a0033,transparent 40%),#0b0b0b;
+  display:flex; align-items:center; justify-content:center;
+  color:#fff; animation:bgGlow 12s infinite alternate;
+  cursor: pointer; /* বক্সের বাইরে ক্লিক করার সংকেত */
+}
+
+@keyframes bgGlow{ from{background-position:0% 0%} to{background-position:100% 100%} }
+
+/* মেইন বক্স (Container) */
+.container{
+  width:420px; padding:32px; border-radius:16px; background:#111;
+  box-shadow:0 0 40px #ff7a0022; position: relative;
+  transform:scale(.95); opacity:0;
+  animation:cardIn .8s ease forwards .4s;
+  cursor: default; /* বক্সের ভেতর কার্সর সাধারণ থাকবে */
+  z-index: 10;
+}
+
+@keyframes cardIn{ to{transform:scale(1); opacity:1} }
+
+/* ইন্টারেক্টিভ ক্রস বাটন */
+.close-trigger {
+    position: fixed; /* স্ক্রিনের সাপেক্ষে ফিক্সড থাকবে */
+    right: 20px;     /* স্ক্রিনের ডান পাশ থেকে ২০ পিক্সেল দূরত্বে */
+    top: 20px;       /* স্ক্রিনের উপরের পাশ থেকে ২০ পিক্সেল দূরত্বে */
+    width: 45px;
+    height: 45px;
+    background: #ff7a00;
+    color: #000;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    opacity: 0; 
+    transform: scale(0);
+    z-index: 100;
+    box-shadow: 0 0 20px #ff7a0088;
+}
+
+/* যখন মাউস বক্সের বাইরে থাকবে তখন বাটনটি উপরে কর্নারে শো করবে */
+body:not(:has(.container:hover)) .close-trigger {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.close-trigger:hover {
+    background: #fff;
+    transform: scale(1.1) rotate(90deg); /* হোভারে ঘুরবে এবং বড় হবে */
+}
+
+/*end*/
+
+h1{ text-align:center; margin-bottom:8px; }
+.underline{ height:3px; width:0; background:#ff7a00; margin:0 auto 16px; animation:lineGrow .6s ease forwards .6s; }
+@keyframes lineGrow{ to{width:120px} }
+p{ text-align:center; color:#ccc; margin-bottom:24px }
+
+input{
+  width:100%; padding:12px; margin-bottom:14px; border-radius:8px;
+  background:#0b0b0b; border:1px solid #333; color:#fff; transition:.3s;
+}
+input:focus{ outline:none; border-color:#ff7a00; box-shadow:0 0 10px #ff7a0066; }
+
+button.submit-btn{
+  width:100%; padding:14px; border:none; border-radius:10px;
+  background:#ff7a00; color:#000; font-weight:600; cursor:pointer; transition:.3s;
+}
+button.submit-btn:hover{ transform:translateY(-3px); box-shadow:0 8px 25px #ff7a0077; }
+
+.social{ display:flex; justify-content:center; gap:16px; margin-top:18px; }
+.social a { text-decoration: none; color: inherit; }
+.social-icon {
+  width:42px; height:42px; border-radius:50%; background:#1a1a1a;
+  display:flex; align-items:center; justify-content:center;
+  font-weight:bold; cursor:pointer; transition:.3s;
+}
+.social-icon:hover{ transform:scale(1.15); box-shadow:0 0 15px #ff7a00; }
+
+.footer{ text-align:center; margin-top:22px; opacity:0; animation:fadeUp .6s ease forwards 1.2s; }
+@keyframes fadeUp{ from{opacity:0; transform:translateY(10px)} to{opacity:1; transform:translateY(0)} }
+</style>
+</head>
+<body onclick="goBack(event)">
+<div class="close-trigger" onclick="window.history.back()" title="Cancel">×</div>
+  <div class="container" onclick="event.stopPropagation()">
+    
+    <h1>Create Account</h1>
+    <div class="underline"></div>
+    <p>Join us today, it's quick and easy!</p>
+
+    <input placeholder="Full Name" type="text" name="name">
+    <input placeholder="Email Address" type="email" name="email" autocomplete="email">
+    <input placeholder="Password" type="password" name="password">
+    <input placeholder="Confirm Password" type="password" name="confirm-password">
+
+    <button class="submit-btn" type="submit">Create Account</button>
+
+    <div class="social">
+      <a href="https://accounts.google.com/signin" target="_blank"><div class="social-icon">G</div></a>
+      <a href="https://www.facebook.com/login" target="_blank"><div class="social-icon">f</div></a>
+      <a href="https://www.linkedin.com/login" target="_blank"><div class="social-icon">in</div></a>
+    </div>
+
+    <div class="footer">
+      Already have an account? <span style="color:#ff7a00; cursor:pointer;">Login</span>
+    </div>
+  </div>
+
+  <script>
+    // বক্সের বাইরে ক্লিক করলে ব্যাকে যাওয়ার ফাংশন
+    function goBack(event) {
+      window.history.back();
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services - Responsive Layout</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', system-ui, sans-serif;
+        }
+
+        body {
+            background-color: #000;
+            min-height: 100vh; /* ফিক্সড হাইট বদলে মিনিমাম হাইট দেওয়া হয়েছে */
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start; /* কন্টেন্ট ওপর থেকে শুরু হবে */
+            color: #fff;
+            overflow-x: hidden;
+            overflow-y: auto; /* স্ক্রল করার সুবিধা যোগ করা হয়েছে */
+            cursor: pointer;
+            padding: 40px 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px; 
+            opacity: 0;
+            transform: translateY(-20px);
+            animation: fadeInDown 0.8s ease forwards;
+        }
+
+        h1 {
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* মেইন কন্টেইনার */
+        .services-wrapper {
+            width: 100%;
+            max-width: 1000px;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            cursor: default;
+        }
+
+        .section-group {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards 0.3s;
+        }
+
+        .section-title {
+            font-size: 1.15rem;
+            color: #bbb;
+            margin-bottom: 15px;
+            border-left: 3px solid #ff7a00;
+            padding-left: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        /* গ্রিড সিস্টেম - রেসপন্সিভ করা হয়েছে */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        /* কার্ড ডিজাইন */
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            transition: all 0.4s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 122, 0, 0.6);
+            box-shadow: 0 10px 25px rgba(255, 122, 0, 0.25);
+        }
+
+        .icon-box {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .content h3 {
+            font-size: 1.1rem;
+            margin-bottom: 6px;
+        }
+
+        .content p {
+            font-size: 0.9rem;
+            color: #aaa;
+            line-height: 1.4;
+        }
+
+        /* স্পেশাল রো সেটআপ - বড় স্ক্রিনের জন্য */
+        .center-row, .bottom-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        /* ডেস্কটপে মাঝখানের কার্ডটি সেন্টারে রাখার জন্য */
+        @media (min-width: 900px) {
+            .center-row {
+                display: flex;
+                justify-content: center;
+            }
+            .center-row .card {
+                width: calc(33.33% - 14px);
+            }
+            .bottom-grid {
+                width: 66.6%;
+                margin: 0 auto;
+            }
+        }
+
+        /* এনিমেশন */
+        @keyframes fadeInDown { to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+
+        /* ছোট স্ক্রিনের জন্য বাড়তি ফিক্স */
+        @media (max-width: 600px) {
+            body { padding: 30px 15px; }
+            .section-title { font-size: 1rem; }
+            .card { padding: 15px; }
+        }
+    </style>
+</head>
+<body onclick="window.history.back()">
+
+    <header>
+        <h1>Our Services</h1>
+    </header>
+
+    <div class="services-wrapper" onclick="event.stopPropagation()">
+        
+        <div class="section-group">
+            <div class="section-title">Customer Experience</div>
+            <div class="grid">
+                <div class="card">
+                    <div class="icon-box">🚚</div>
+                    <div class="content">
+                        <h3>Fast Delivery</h3>
+                        <p>Orders delivered in 24-48 hours network.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="icon-box">📦</div>
+                    <div class="content">
+                        <h3>Easy Returns</h3>
+                        <p>Not satisfied? Return or exchange products.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="icon-box">🎧</div>
+                    <div class="content">
+                        <h3>Customer Support</h3>
+                        <p>24/7 assistance from our friendly team.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-group">
+            <div class="section-title">Security & Trust</div>
+            <div class="center-row">
+                <div class="card">
+                    <div class="icon-box">🛡️</div>
+                    <div class="content">
+                        <h3>Secure Payment</h3>
+                        <p>Your transactions are protected with encryption.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-group">
+            <div class="section-title">Growth & Value</div>
+            <div class="bottom-grid">
+                <div class="card">
+                    <div class="icon-box">🏷️</div>
+                    <div class="content">
+                        <h3>Offers & Discounts</h3>
+                        <p>Enjoy exclusive deals and promotions.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="icon-box">🛍️</div>
+                    <div class="content">
+                        <h3>Wide Categories</h3>
+                        <p>Vast selection of products across categories.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Yours</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="top-banner">
+        <canvas id="particleCanvas"></canvas>
+        <nav class="navbar">
+      <div class="logo">
+      <a href="Index.html" style="text-decoration: none; color: inherit;">
+        <span>ELETRIA</span>
+     </a>
+   </div>
+
+    <div class="nav-right">
+        <a href="CreateAccount.html" class="account-link" style="text-decoration: none; color: inherit;">Create An Account</a>
+        <div class="cart-icon" onclick="toggleCart()">
+            🛒 Cart <span id="cart-count">0</span>
+        </div>
+        <div class="menu-dropdown">
+            <button class="menu-btn">⋮</button> <div class="dropdown-content">
+                <a href="#product-section">Our Products</a>
+                <a href="#service-content">Our Services</a>
+                <a href="#">Track Order</a> <a href="#">Wishlist</a>    <a href="#">Contact Us</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+        <div class="hero-content">
+            <h1>Find the best products from "ELETRIA"</h1>
+            
+            <div class="hero-search">
+    <div class="search-wrapper">
+        <input type="text" id="searchInput" placeholder="Search for products, brands or sellers..." onkeyup="searchProducts()">
+        <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>  
+    </div>
+</div>
+
+    <a href="#product-section" class="explore-btn" style="text-decoration: none; display: inline-block;">Explore Now</a>
+        </div>
+    </div>
+
+    <div class="container" id="product-section">
+        <h2 class="section-title">New Arrivals</h2>
+           <div 
+        class="product-grid" id="product-container">
+           </div>
+                <div id="product-container" class="product-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; padding: 20px;"></div>
+
+<div id="pagination-controls" style="display: flex; justify-content: center; padding: 40px 0; clear: both;"></div>
+    </div>
+    
+    <div id="service-content"> <iframe src="Our_Service.html" width="100%" height="900px" frameborder="0" scrolling="no" style="border:none; display: block;"></iframe></div>
+
+   <footer>
+        <div class="footer-grid">
+            <div>
+                <h3><span>ELETRIA</span></h3>
+                <p>ELETRIA Bangladesh is a leading multi-vendor marketplace where you are guaranteed premium quality products and fast, reliable delivery.</p>
+            </div>
+            <div>
+                <h4>Help & Guide</h4>
+                <ul>
+                    <li><a href="#">How to Buy</a></li>
+                    <li><a href="#">Shipping Policy</a></li>
+                    <li><a href="#">Returns & Refunds</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Become a Seller</h4>
+                <ul>
+                    <li><a href="#">Seller Register</a></li>
+                    <li><a href="#">Seller Dashboard</a></li>
+                    <li><a href="#">Commission Rates</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Contact Us</h4>
+                <p>Email: pureitmahabubul@gmail.com</p>
+                <p>Hotline: 01753-384871</p>
+                <div class="payment-methods">
+                    <span class="bkash">bKash</span>
+                    <span class="nagad">Nagad</span>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 ELETRIA Marketplace. All rights reserved.</p>
+        </div>
+    </footer>   
+
+    <div id="cartModal" class="cart-sidebar">
+    <div class="cart-header">
+        <h2>Your Shopping Bag (<span id="cart-count-side">0</span>)</h2>
+        <span class="close-cart" onclick="toggleCart()">&times;</span>
+    </div>
+
+    <div id="cart-items-list" class="cart-body">
+        </div>
+
+    <div class="cart-footer">
+        <div class="summary-line">
+            <span>Subtotal</span>
+            <span class="price-amount">৳<span id="total-price">0</span></span>
+        </div>
+        <p class="shipping-info">Shipping & taxes calculated at checkout.</p>
+        <button class="checkout-btn" onclick="openCheckout()">Proceed to Checkout</button>
+        <button class="continue-shopping" onclick="toggleCart()">Continue Shopping</button>
+    </div>
+</div>
+
+<div id="checkoutModal" class="modal">
+    <div class="modal-content checkout-container">
+        <span class="close" onclick="closeCheckout()">&times;</span>
+        <div class="checkout-grid">
+            <div class="billing-details">
+                <h3>Shipping Information</h3>
+                <input type="text" placeholder="Full Name">
+                <input type="text" placeholder="Phone Number">
+                <textarea placeholder="Full Address"></textarea>
+                
+                <h3>Payment Method</h3>
+                <div class="payment-options">
+                          <label class="pay-item">
+                               <input type="radio" name="pay" checked> 
+                                 <span>Cash on Delivery</span>
+                         </label>
+                         <label class="pay-item">
+                                <input type="radio" name="pay"> 
+                                <span>bKash / Nagad / Roket</span>
+                         </label>
+                </div>
+            </div>
+            <div class="order-summary-box">
+                <h3>Order Summary</h3>
+                <div id="checkout-summary-list"></div>
+                <hr>
+                <div class="final-total">
+                    <span>Total Amount</span>
+                    <span>৳<span id="checkout-total">0</span></span>
+                </div>
+                <button class="confirm-order-btn">Confirm Order</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="signupModal" class="modal-overlay">
+    <div class="signup-modal-content">
+        <span class="close-btn" onclick="closeSignup()">&times;</span>
+        
+        <form id="signupForm" class="auth-form-pro">
+            <h2>Create Your Account</h2>
+            <p>Join the best marketplace in Bangladesh</p>
+
+            <div class="input-row">
+                <input type="text" placeholder="Full Name" required>
+                <input type="email" placeholder="Email Address" required>
+            </div>
+
+            <div class="input-row">
+                <input type="tel" placeholder="Phone Number" required>
+                <input type="date" required title="Date of Birth">
+            </div>
+
+            <div class="gender-selection">
+                <label><input type="radio" name="gender" value="male"> Male</label>
+                <label><input type="radio" name="gender" value="female"> Female</label>
+                <label><input type="radio" name="gender" value="other"> Other</label>
+            </div>
+
+            <div class="input-row">
+                <input type="password" placeholder="Password" required>
+                <input type="password" placeholder="Confirm Password" required>
+            </div>
+
+            <button type="submit" class="signup-submit-btn">Register Now</button>
+            
+            <div class="social-divider"><span>OR REGISTER WITH</span></div>
+            
+            <div class="social-btns">
+                <button type="button" class="g-btn">Google</button>
+                <button type="button" class="f-btn">Facebook</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
